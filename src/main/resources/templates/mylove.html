@@ -1,0 +1,353 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>情感专区</title>
+
+    <link type="text/css" rel="stylesheet" href="love/css/default.css">
+    <link rel="icon" type="image/x-icon" href="https://zhy-myblog.oss-cn-shenzhen.aliyuncs.com/static/img/favicon.ico">
+
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.bootcss.com/lodash.js/4.17.15/lodash.core.min.js"></script>
+    <script type="text/javascript" src="love/js/jscex.min.js"></script>
+    <script type="text/javascript" src="love/js/jscex-parser.js"></script>
+    <script type="text/javascript" src="love/js/jscex-jit.js"></script>
+    <script type="text/javascript" src="love/js/jscex-builderbase.min.js"></script>
+    <script type="text/javascript" src="love/js/jscex-async.min.js"></script>
+    <script type="text/javascript" src="love/js/jscex-async-powerpack.min.js"></script>
+    <script type="text/javascript" src="love/js/functions.js" charset="utf-8"></script>
+    <script type="text/javascript" src="love/js/love.js" charset="utf-8"></script>
+    <style type="text/css"><!--
+    .STYLE1 {
+        color: #666666
+    }
+    -->
+    </style>
+</head>
+
+<body>
+<audio style="display:none; height: 0" id="bg-music"  src="http://music.163.com/song/media/outer/url?id=536622304.mp3" autoplay="autoplay" loop preload="auto" type="audio/mp3"  ></audio>
+<div id="main">
+
+    <div id="wrap">
+
+        <div id="text" style="top:30px">
+            <div id="code"><span style="color: #FF0000; ">
+              <!--  <span class="say"> </span><br>-->
+                <h3>
+                    <span class="say">程序猿问程序媛：为什么要离开我？</span><br>
+                    <span class="say">媛说：别傻了，我们根本就是两个世界里的人</span><br>
+                    <span class="say">就像在JS里永远都无法调用JAVA类一样</span><br>
+                    <span class="say">我们之间也是不可能的</span><br>
+                    <span class="say">猿沉默了很久，转身离开了</span><br>
+                    <span class="say">一个月后他在开源社区公布了dwr的完整代码</span><br>
+                    <span class="say">————————————————</span><br>
+                    <span class="say"></span><br>
+                    <span class="say"></span><br>
+                    <span class="say">女孩对男孩说，“我们分手吧！”</span><br>
+                    <span class="say">男孩沉默半天，开口问道</span><br>
+                    <span class="say">“我能再说最后一句话吗？”</span><br>
+                    <span class="say">“说吧，婆婆妈妈的。”</span><br>
+                    <span class="say">“我会编程……”</span><br>
+                    <span class="say">“会编程有个屁用啊，现在到处都是会编程的人！”</span><br>
+                    <span class="say">男孩涨红了脸，接着说道：</span><br>
+                    <span class="say">我会编程……我会变成……童话里,你爱的那个天使……</span><br>
+                    <span class="say"></span><br>
+                    <span class="say">谁还有段子欢迎留言</span><br>
+                </h3>
+            </span>
+            </div>
+
+        </div>
+        <div id="clock-box"><span class="STYLE1"></span><font color="#33CC00"></font> <span class="STYLE1"></span>
+            <!-- <div id="clock"></div>-->
+        </div>
+
+        <canvas id="canvas" width="1100" height="680"></canvas>
+    </div>
+
+</div>
+<div style="overflow: hidden;">
+      		<span style="padding-right: 25%;float: right">
+      		<!--<input type="button"style="width:100px;height:50px;" value="留言板"  onclick="window.open('index2.html')"/>-->
+                <!--<input type="button"style="width:100px;height:50px;" value="3D相册"  onclick="window.open('/love/3d/photo3D.html')"/>-->
+      		</span>
+</div>
+
+<!--
+<style type="text/css">
+        body {
+        position: fixed;
+//将body铺满整个屏幕            
+      width: 100 %;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: rgb(51, 51, 51);
+        overflow: hidden;
+    }
+
+          #main {
+ //注意这里：初始时候我们需要将这个div的长宽给设置一下（ps：宽度要大于高度）    
+     width: 560 px;
+        height: 320px;
+    }
+
+           
+
+    @media screen and (orientation: portrait){
+
+    #main {
+        position: absolute;
+        width: 100vh;
+        height: 100vw;
+        top: 0;
+        left: 100vw;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+         transform: rotate(90deg);
+        transform-origin: 0% 0%;
+    }
+
+                   
+    }
+
+             
+
+    @media screen and (orientation: landscape){
+    #main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+    }
+
+                   
+    }
+</style>
+-->
+
+
+<script>
+
+   //音乐自动播放
+    $(document).ready(function () {
+        autoPlayMusic();
+        audioAutoPlay();
+    });
+
+    function audioAutoPlay() {
+        var audio = document.getElementById('bg-music');
+        audio.play();
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            audio.play();
+        }, false);
+    }
+
+    // 音乐播放
+    function autoPlayMusic() {
+        // 自动播放音乐效果，解决浏览器或者APP自动播放问题
+        function musicInBrowserHandler() {
+            musicPlay(true);
+            document.body.removeEventListener('touchstart', musicInBrowserHandler);
+        }
+
+        document.body.addEventListener('touchstart', musicInBrowserHandler);
+
+        // 自动播放音乐效果，解决微信自动播放问题
+        function musicInWeixinHandler() {
+            musicPlay(true);
+            document.addEventListener("WeixinJSBridgeReady", function () {
+                musicPlay(true);
+            }, false);
+            document.removeEventListener('DOMContentLoaded', musicInWeixinHandler);
+        }
+
+        document.addEventListener('DOMContentLoaded', musicInWeixinHandler);
+    }
+
+    function musicPlay(isPlay) {
+        var media = document.querySelector('#bg-music');
+        if (isPlay && media.paused) {
+            media.play();
+        }
+        if (!isPlay && !media.paused) {
+            media.pause();
+        }
+    }
+
+    (function () {
+        var canvas = $('#canvas');
+
+        if (!canvas[0].getContext) {
+            $("#error").show();
+            return false;
+        }
+
+        var width = canvas.width();
+        var height = canvas.height();
+        canvas.attr("width", width);
+        canvas.attr("height", height);
+        var opts = {
+            seed: {
+                x: width / 2 - 20,
+                color: "rgb(190, 26, 37)",
+                scale: 2
+            },
+            branch: [
+                [535, 680, 570, 250, 500, 200, 30, 100, [
+                    [540, 500, 455, 417, 340, 400, 13, 100, [
+                        [450, 435, 434, 430, 394, 395, 2, 40]
+                    ]],
+                    [550, 445, 600, 356, 680, 345, 12, 100, [
+                        [578, 400, 648, 409, 661, 426, 3, 80]
+                    ]],
+                    [539, 281, 537, 248, 534, 217, 3, 40],
+                    [546, 397, 413, 247, 328, 244, 9, 80, [
+                        [427, 286, 383, 253, 371, 205, 2, 40],
+                        [498, 345, 435, 315, 395, 330, 4, 60]
+                    ]],
+                    [546, 357, 608, 252, 678, 221, 6, 100, [
+                        [590, 293, 646, 277, 648, 271, 2, 80]
+                    ]]
+                ]]
+            ],
+            bloom: {
+                num: 700,
+                width: 1080,
+                height: 650,
+            },
+            footer: {
+                width: 1200,
+                height: 5,
+                speed: 10,
+            }
+        }
+
+        var tree = new Tree(canvas[0], width, height, opts);
+        var seed = tree.seed;
+        var foot = tree.footer;
+        var hold = 1;
+
+        canvas.click(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            if (seed.hover(x, y)) {
+                hold = 0;
+                canvas.unbind("click");
+                canvas.unbind("mousemove");
+                canvas.removeClass('hand');
+            }
+        }).mousemove(function (e) {
+            var offset = canvas.offset(), x, y;
+            x = e.pageX - offset.left;
+            y = e.pageY - offset.top;
+            canvas.toggleClass('hand', seed.hover(x, y));
+        });
+
+        var seedAnimate = eval(Jscex.compile("async", function () {
+            seed.draw();
+            while (hold) {
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canScale()) {
+                seed.scale(0.95);
+                $await(Jscex.Async.sleep(10));
+            }
+            while (seed.canMove()) {
+                seed.move(0, 2);
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+        }));
+
+        var growAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.grow();
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canGrow());
+        }));
+
+        var flowAnimate = eval(Jscex.compile("async", function () {
+            do {
+                tree.flower(2);
+                $await(Jscex.Async.sleep(10));
+            } while (tree.canFlower());
+        }));
+
+        var moveAnimate = eval(Jscex.compile("async", function () {
+            tree.snapshot("p1", 240, 0, 610, 680);
+            while (tree.move("p1", 500, 0)) {
+                foot.draw();
+                $await(Jscex.Async.sleep(10));
+            }
+            foot.draw();
+            tree.snapshot("p2", 500, 0, 610, 680);
+
+            // 会有闪烁不得意这样做, (＞﹏＜)
+            canvas.parent().css("background", "url(" + tree.toDataURL('image/png') + ")");
+            canvas.css("background", "#ffe");
+            $await(Jscex.Async.sleep(300));
+            canvas.css("background", "none");
+        }));
+
+        var jumpAnimate = eval(Jscex.compile("async", function () {
+            var ctx = tree.ctx;
+            while (true) {
+                tree.ctx.clearRect(0, 0, width, height);
+                tree.jump();
+                foot.draw();
+                $await(Jscex.Async.sleep(25));
+            }
+        }));
+
+//        时间设置
+        var textAnimate = eval(Jscex.compile("async", function () {
+            var together = new Date();
+            together.setFullYear(2020, 2, 8); 			//时间年月日
+            //Javascript的setFullYear中月份表示为0-11 ,0为1月
+            together.setHours(0);						//小时
+            together.setMinutes(0);					//分钟
+            together.setSeconds(0);					//秒前一位
+            together.setMilliseconds(0);				//秒第二位
+
+            $("#code").show().typewriter();
+            $("#clock-box").fadeIn(500);
+            while (true) {
+                timeElapse(together);
+                $await(Jscex.Async.sleep(1000));
+            }
+        }));
+
+        var runAsync = eval(Jscex.compile("async", function () {
+            $await(seedAnimate());
+            $await(growAnimate());
+            $await(flowAnimate());
+            $await(moveAnimate());
+
+            textAnimate().start();
+
+            $await(jumpAnimate());
+        }));
+
+        runAsync().start();
+    })();
+</script>
+
+<div style="text-align:center;">
+    <p>
+    <h2></h2></p>
+</div>
+<!--<script>
+		var box = document.getElementById("main");
+		if (document.body.clientWidth<document.body.clientHeight){
+			box.style.webkitTransform = 'rotate(90deg)';
+		}
+	</script>-->
+</body>
+</html>

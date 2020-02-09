@@ -1,0 +1,11 @@
+User-agent: *
+Disallow: /css/
+Disallow: /emoji/
+Disallow: /img/
+Disallow: /js/
+Disallow: /languages/
+Disallow: /lib/
+Disallow: /love/
+Disallow: /person_jpg/
+Disallow: /plugins/
+Disallow: /*?*
