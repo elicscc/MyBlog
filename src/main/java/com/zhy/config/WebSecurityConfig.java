@@ -54,11 +54,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/superadmin","/myheart").hasAnyRole("SUPERADMIN")
                 .and()
                // .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/")
-                .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("https://blog.ccstay.com")
+                .formLogin().loginPage("/login").failureUrl("/login?error").defaultSuccessUrl("/")
                 .and()
                 .headers().frameOptions().sameOrigin()
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("https://blog.ccstay.com");
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/");
 
         http.csrf().disable();
     }
