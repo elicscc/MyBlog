@@ -62,7 +62,6 @@ public class TodayControl {
 
         //替换taxtarea中的回车以及空格
         dailySpeech.setContent(dailySpeech.getContent().replaceAll(" ","&nbsp;").replaceAll("\r","<br/>"));
-
         DataMap data = todayService.publishISay(dailySpeech);
         return JsonResult.build(data).toJSON();
     }

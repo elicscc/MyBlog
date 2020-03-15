@@ -174,7 +174,7 @@ public class EditorControl {
     //@RequestMapping("/uploadImage")
     public Map<String,Object> uploadImage(HttpServletRequest request, HttpServletResponse response,
                                           @RequestParam(value = "editormd-image-file", required = false) MultipartFile file){
-        Map<String,Object> resultMap = new HashMap<String,Object>();
+        Map<String,Object> resultMap = new HashMap<>();
         try {
             request.setCharacterEncoding( "utf-8" );
             //设置返回头后页面才能获取返回url
